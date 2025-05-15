@@ -126,6 +126,16 @@ function getButtonClass(): string {
   background-color: var(--color-primary);
 }
 
+.success {
+  color: white;
+  background-color: var(--color-success);
+}
+
+.warning {
+  color: white;
+  background-color: var(--color-warning);
+}
+
 .danger {
   color: white;
   background-color: var(--color-error)
@@ -143,6 +153,16 @@ function getButtonClass(): string {
 .plain-primary {
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
+}
+
+.plain-success {
+  color: var(--color-success);
+  border: 1px solid var(--color-success);
+}
+
+.plain-warning {
+  color: var(--color-warning);
+  border: 1px solid var(--color-warning);
 }
 
 .plain-danger {
