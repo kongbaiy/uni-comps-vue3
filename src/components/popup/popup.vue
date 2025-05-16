@@ -22,6 +22,7 @@
     <slot v-else name="header" />
 
     <custom-icon
+      v-if="showCloseIcon"
       type="close"
       :size="42"
       class="popup-close"
@@ -40,7 +41,7 @@
       active ? 'popup-mask__active' : '',
     ]"
     catchtouchmove="emptyFunction"
-    @click="clickClose && handleClose()"
+    @click="maskClose && handleClose()"
   />
 </template>
 
@@ -56,20 +57,24 @@ type Position = 'top' | 'bottom' | 'center' | 'right' | 'left'
 interface IProps {
   modelValue: Ref<boolean>
   title?: string
-  clickClose?: boolean
   position?: Position
   width?: string
   height?: string
   padding?: string
   background?: string
+  radius?: string
+  showCloseIcon?: boolean
   showMask?: boolean
+  maskClose?: boolean
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  clickClose: false,
-  showMask: false,
   position: 'bottom',
   padding: '20rpx',
+  radius: '32rpx',
+  showCloseIcon: true,
+  showMask: false,
+  maskClose: false,
 })
 const emits = defineEmits<(e: 'update:modelValue', value: boolean) => void>()
 
@@ -123,7 +128,7 @@ function handleTransitionend() {
     flex-direction: column;
     position: fixed;
     z-index: 62;
-    transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 200ms cubic-bezier(0.2, 0, 0.2, 0.1);
   }
 
   .popup-close {
@@ -144,13 +149,28 @@ function handleTransitionend() {
     line-height: 80rpx;
   }
 
+  .popup-top {
+    left: 0;
+    top: 0;
+    transform: translateY(-100%);
+    width: 100%;
+    border-bottom-left-radius: v-bind(radius);
+    border-bottom-right-radius: v-bind(radius);
+    background-color: white;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .popup-top__active {
+    transform: translateY(0);
+  }
+
   .popup-bottom {
     left: 0;
     bottom: 0;
     transform: translateY(100%);
     width: 100%;
-    border-top-left-radius: 32rpx;
-    border-top-right-radius: 32rpx;
+    border-top-left-radius: v-bind(radius);
+    border-top-right-radius: v-bind(radius);
     background-color: white;
     transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }

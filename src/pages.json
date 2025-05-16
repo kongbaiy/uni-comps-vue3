@@ -1,6 +1,18 @@
 {
   "pages": [
     {
+      "path": "example/popup/index",
+      "style": {
+        "navigationBarTitleText": "popup"
+      }
+    },
+    {
+      "path": "example/icons/index",
+      "style": {
+        "navigationBarTitleText": "cions"
+      }
+    },
+    {
       "path": "example/dialog/index",
       "style": {
         "navigationBarTitleText": "dialog"
