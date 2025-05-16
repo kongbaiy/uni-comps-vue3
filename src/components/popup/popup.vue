@@ -179,6 +179,52 @@ function handleTransitionend() {
     transform: translateY(0);
   }
 
+  .popup-left {
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    height: 100%;
+    background-color: white;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .popup-left__active {
+    transform: translateX(0);
+  }
+
+  .popup-right {
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    height: 100%;
+    background-color: white;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .popup-right__active {
+    transform: translateX(0);
+  }
+
+  .popup-right .popup-close {
+    left: 0;
+    right: auto;
+  }
+
+  .popup-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.68);
+    background-color: white;
+    opacity: 0;
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .popup-center__active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+
+  }
+
   .popup-content {
     flex: 1;
     overflow-y: scroll;
