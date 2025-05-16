@@ -96,14 +96,16 @@ interface IProps {
   offsetY?: string
   offsetX?: string
   block?: boolean
+  activeIndex?: number
 }
 
 const props = withDefaults(defineProps<IProps>(), {
+  block: true,
+  position: 'left',
   fieldNames: () => ({
     label: 'label',
     value: 'value',
   }),
-  block: true,
 })
 const emits = defineEmits(['update:modelValue', 'popover', 'open'])
 
@@ -140,6 +142,10 @@ watchPostEffect(() => {
   }
 
   emits('open', show.value)
+})
+
+watchPostEffect(() => {
+  if (props.activeIndex) activePopoverIndex.value = props.activeIndex
 })
 
 function handlePopoverContent() {
@@ -230,6 +236,7 @@ defineExpose({
     padding: 16rpx;
     background-color: white;
     border-radius: 16rpx;
+    box-shadow: 0 0 24rpx 0 rgba(0, 0, 0, 0.1);
     transform: translateY(0);
     transition: all 200ms;
   }

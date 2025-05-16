@@ -1,6 +1,17 @@
 {
   "pages": [
-
+    {
+      "path": "example/dialog/index",
+      "style": {
+        "navigationBarTitleText": "dialog"
+      }
+    },
+    {
+      "path": "example/popover/index",
+      "style": {
+        "navigationBarTitleText": "popover"
+      }
+    },
     {
       "path": "example/index/index",
       "style": {

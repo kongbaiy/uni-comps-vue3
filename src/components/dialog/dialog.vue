@@ -7,7 +7,7 @@
     }"
     @transitionend="handleTransitionend"
   >
-    <view class="dialog-title">
+    <view v-if="title" class="dialog-title">
       {{ title }}
     </view>
 
@@ -33,14 +33,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch, watchPostEffect } from 'vue'
 import type { Ref } from 'vue'
 import { NodeSelector } from '../common/index'
 
 import { fontSize, style } from '../common/config'
 
 interface IProps {
-  title: string
+  title?: string
   modelValue: boolean
   showMask: boolean
   clickMaskClose?: boolean
@@ -64,21 +64,34 @@ const active: Ref = ref<boolean>(false)
 const getNode = new NodeSelector()
 const { normal, large } = fontSize
 
-watch(props, (newProps: any) => {
-  const { modelValue } = newProps
+// watch(props, (newProps: any) => {
+//   const { modelValue } = newProps
 
-  if (modelValue) {
-    show.value = true
+//   if (modelValue) {
+//     show.value = true
+//     getNode.query('.dialog', () => {
+//       active.value = newProps.modelValue
+//     })
+//   }
+//   else {
+//     active.value = false
+//   }
+// }, {
+//   deep: true,
+//   immediate: true,
+// })
+
+watch(() => props.modelValue, (newValue) => {
+  if (newValue) show.value = newValue
+  else active.value = false
+})
+
+watchPostEffect(() => {
+  if (show.value) {
     getNode.query('.dialog', () => {
-      active.value = newProps.modelValue
+      active.value = props.modelValue
     })
   }
-  else {
-    active.value = false
-  }
-}, {
-  deep: true,
-  immediate: true,
 })
 
 function handleClose() {

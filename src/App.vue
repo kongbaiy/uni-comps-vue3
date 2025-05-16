@@ -12,4 +12,15 @@ onHide(() => {
 })
 </script>
 
-<style></style>
+<style lang="scss">
+.module-title {
+  @apply m-40rpx text-lg text-black;
+}
+
+.group-cols-3 {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: 110rpx;
+  padding: 0 20px;
+}
+</style>
