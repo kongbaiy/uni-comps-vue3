@@ -1,6 +1,12 @@
 {
   "pages": [
     {
+      "path": "example/tab-nav/index",
+      "style": {
+        "navigationBarTitleText": "tab nav"
+      }
+    },
+    {
       "path": "example/popup/index",
       "style": {
         "navigationBarTitleText": "popup"

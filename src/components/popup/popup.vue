@@ -21,8 +21,9 @@
     </view>
     <slot v-else name="header" />
 
+    <slot v-if="$slots.icon" name="icon" />
     <custom-icon
-      v-if="showCloseIcon"
+      v-if="showCloseIcon && !$slots.icon"
       type="close"
       :size="42"
       class="popup-close"
