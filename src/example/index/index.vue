@@ -1,202 +1,103 @@
 <template>
-  <verify-code
-    :delay="60"
-    @start="handleCodeButtonStart"
-  />
+  <page-meta page-style="background-color:#f0f0f0;" />
 
-  <popover
-    :show-mask="true"
-    :guide="true"
-    :block="false"
-    position="right"
-  >
-    <view>
-      popover
-    </view>
-    <template #actions>
-      <view>adc</view>
-    </template>
-  </popover>
-
-  <zs-button
-    plain
-    type="primary"
-    @click="popupVisible = true"
-  >
-    Button
-  </zs-button>
-
-  <zs-button
-    plain
-    type="primary"
-    @click="popupVisible = true"
-  >
-    Button
-  </zs-button>
-
-  <zs-form
-    ref="form"
-    v-model="formData"
-    prompt-mode="toast"
-    :rules="rules"
-    align="justify"
-    label-width="200rpx"
-    label-gap="20px"
-    gap="20rpx"
-  >
-    <zs-form-item label="所属机构" prop="organization" required>
-      <input
-        v-model="formData.organization"
-        type="text"
-        placeholder="请选择所属机构"
-        class="form-input"
-      >
-    </zs-form-item>
-
-    <picker>
-      <zs-form-item label="姓名" prop="name" required>
-        <input
-          v-model="formData.name"
-          type="text"
-          placeholder="请输入姓名"
-          class="form-input"
-        >
-      </zs-form-item>
-    </picker>
-
-    <zs-button block type="primary" @click="handleSubmit">
-      提交
-    </zs-button>
-
-    <zs-button block type="primary" @click="handleReset">
-      重置
-    </zs-button>
-  </zs-form>
-
-  <slide-delete>
-    <view class="h-60 bg-#ddd">
-      删除
-    </view>
-  </slide-delete>
-
-  <popup
-    v-model="popupVisible"
-    show-mask
-  >
-    <view style="height: 200px;">
-      popup
-    </view>
-  </popup>
-
-  <tab-nav :data="tabData" data-key="title">
-    <template #default="row">
-      <view :style="{ margin: '0 1px', width: '200rpx', height: '60rpx', fontSize: '20rpx', background: '#ddd' }">
-        {{ row.currentData.title }}{{ row.currentIndex }}
+  <view class="container">
+    <view v-for="(item, index) in list" :key="index">
+      <view class="title">
+        {{ item.title }}
       </view>
-    </template>
-  </tab-nav>
-
-  <zs-button type="danger" @click="handleDialog">
-    dialog
-  </zs-button>
-  <zs-dialog v-model="dialogVisible" show-mask title="dialog">
-    dialog
-  </zs-dialog>
-
-  <zs-radio-group v-model="radioValue">
-    <zs-radio value="a" active-color="red">
-      a
-    </zs-radio>
-    <zs-radio value="b">
-      b
-    </zs-radio>
-  </zs-radio-group>
-
-  <zs-checkbox-group v-model="checkboxValue">
-    <zs-checkbox value="a" active-color="red">
-      a
-    </zs-checkbox>
-    <zs-checkbox value="b">
-      b
-    </zs-checkbox>
-  </zs-checkbox-group>
-
-  <zs-textarea :maxlength="30" word-number />
-  <search />
+      <view v-for="(cItem, cIndex) in item.children" :key="cIndex" class="cell" @click="toNavigate(cItem.path)">
+        {{ cItem.text }}
+      </view>
+    </view>
+  </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 
-import zsButton from '../../components/button/button.vue'
-import zsForm from '../../components/form/form.vue'
-import zsFormItem from '../../components/form-item/form-item.vue'
-import slideDelete from '../../components/slide-delete/slide-delete.vue'
-import tabNav from '../../components/tab/nav.vue'
-import zsDialog from '../../components/dialog/dialog.vue'
-import zsRadioGroup from '../../components/radio-group/radio-group.vue'
-import zsRadio from '../../components/radio/radio.vue'
-import zsTextarea from '../../components/textarea/textarea.vue'
-import zsCheckboxGroup from '../../components/checkbox-group/checkbox-group.vue'
-import zsCheckbox from '../../components/checkbox/checkbox.vue'
-
-const popupVisible = ref<boolean>(false)
-const formData = ref<any>({
-  organization: 'organization',
-  name: '',
-})
-const rules: any = {
-  organization: [
-    { message: '请输入机构' },
-  ],
-  name: [
-    { message: '请输入择姓名' },
-  ],
-}
-const form = ref()
-const tabData = ref<any[]>([
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
-  { title: '笔记本' },
+const list = ref<any[]>([
+  {
+    title: '基础组件',
+    children: [
+      {
+        text: 'Button 按钮',
+        path: '/example/button/index',
+      },
+      {
+        text: 'Icon 图标',
+        path: '/example/icons/index',
+      },
+      {
+        text: 'Popover 气泡',
+        path: '/example/popover/index',
+      },
+      {
+        text: 'Popup 弹出层',
+        path: '/example/popup/index',
+      },
+      {
+        text: 'dialog 弹窗',
+        path: '/example/dialog/index',
+      },
+      {
+        text: 'TabNav 标签页',
+        path: '/example/tab-nav/index',
+      },
+    ],
+  },
+  {
+    title: '表单组件',
+    children: [
+      {
+        text: 'Checkbox 多选框',
+        path: '/example/checkbox/index',
+      },
+      {
+        text: 'Radio 单选框',
+        path: '/example/radio/index',
+      },
+      {
+        text: 'Search 输入框',
+        path: '/example/search/index',
+      },
+    ],
+  },
 ])
-const dialogVisible: any = ref<boolean>(false)
-const radioValue = ref<string>('b')
-const checkboxValue = ref<string[]>([])
 
-function handleCodeButtonStart(next: () => void) {
-  next()
-}
-
-function handleSubmit() {
-  console.log(checkboxValue.value)
-  form.value.validate(() => {
-    console.log('yes')
+function toNavigate(path: string) {
+  uni.navigateTo({
+    url: path,
   })
 }
-
-function handleReset() {
-  form.value.resetForm()
-}
-
-function handleDialog() {
-  dialogVisible.value = true
-}
 </script>
+
+<style lang="scss" scoped>
+.container {
+  padding: 24rpx;
+}
+
+.title {
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+
+.cell {
+  margin-bottom: 20rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #666;
+  background-color: #f5f5f5;
+  border-radius: 35rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+  transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.cell:hover {
+  color: #000;
+  box-shadow: 0 2rpx 20rpx rgba(0, 0, 0, 0.1);
+
+}
+</style>

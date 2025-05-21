@@ -1,6 +1,43 @@
 {
   "pages": [
     {
+      "path": "example/text/index",
+      "style": {
+        "navigationBarTitleText": "text"
+      }
+    },
+    {
+      "path": "example/index/index",
+      "style": {
+        "navigationBarTitleText": "home"
+      }
+    },
+    {
+      "path": "example/search/index",
+      "style": {
+        "navigationBarTitleText": "search"
+      }
+    },
+    {
+      "path": "example/radio/index",
+      "style": {
+        "navigationBarTitleText": "radio"
+      }
+    },
+    {
+      "path": "example/checkbox/index",
+      "style": {
+        "navigationBarTitleText": "checkbox"
+      }
+    },
+
+    {
+      "path": "example/list/index",
+      "style": {
+        "navigationBarTitleText": "list"
+      }
+    },
+    {
       "path": "example/tab-nav/index",
       "style": {
         "navigationBarTitleText": "tab nav"
@@ -31,21 +68,9 @@
       }
     },
     {
-      "path": "example/index/index",
-      "style": {
-        "navigationBarTitleText": "home"
-      }
-    },
-    {
       "path": "example/button/index",
       "style": {
         "navigationBarTitleText": "button"
-      }
-    },
-    {
-      "path": "example/list/index",
-      "style": {
-        "navigationBarTitleText": "list"
       }
     }
   ],

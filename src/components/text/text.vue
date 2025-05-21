@@ -22,7 +22,7 @@
     <text v-if="!$slots.expand">
       {{ isExpand ? collapseText : expandText }}
     </text>
-    <slot name="expand" />
+    <slot name="expand" :is-expand="isExpand" />
   </view>
 </template>
 
@@ -55,10 +55,14 @@ const { normal, small } = fontSize
 
 const textBoxHeight = computed(() => `${props.lineClamp * props.lineHeight}rpx`)
 const textContentStyle = computed(() => {
-  return {
-    lineHeight: `${props.lineHeight}rpx`,
-    color: props.color,
+  const { lineHeight, color } = props
+  const style: AnyObject = {
+    lineHeight: `${lineHeight}rpx`,
   }
+
+  if (color) style.color = color
+
+  return style
 })
 
 onMounted(() => {
@@ -93,6 +97,8 @@ function handleExpand(status: boolean) {
   .text-content {
     font-size: v-bind(normal);
     color: var(--color-h1);
+    word-break: break-all;
+    white-space: pre-wrap;
   }
 
   .ellipsis {

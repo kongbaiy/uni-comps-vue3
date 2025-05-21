@@ -1,24 +1,29 @@
 <template>
-  <label :class="{ label: true!, label__active: checked }" @click="handleLabel">
+  <label :class="{ label: true!, label__active: checked, label__disabled: disabled }" @click="handleLabel">
     <view :style="radioStyle" class="radio" />
     <slot />
   </label>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, ref, watch } from 'vue'
 
 import { getCssDefaultUint } from '../common/index'
 
 interface IProps {
   value?: any
-  size?: number
+  size?: number | string
+  checked?: boolean
+  disabled?: boolean
+  checkedColor?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   size: 26,
 })
 const setModel = inject<<T>(args: T) => void>('set')
+
+const checked = ref<boolean>(false)
 
 const radioStyle = computed(() => {
   const { size } = props
@@ -29,8 +34,22 @@ const radioStyle = computed(() => {
     height: sizeValue,
   }
 })
+const activeRadioBorder = computed(() => {
+  const { checkedColor } = props
 
-const checked = ref<boolean>(false)
+  return checkedColor || 'var(--color-radio-border)'
+})
+const activeRadioAfterBackground = computed(() => {
+  const { checkedColor } = props
+
+  return checkedColor || 'var(--color-active-radio)'
+})
+
+watch(() => props.checked, (newValue) => {
+  if (newValue) handleLabel()
+}, {
+  immediate: true,
+})
 
 function handleLabel() {
   setModel?.(props.value)
@@ -75,12 +94,19 @@ defineExpose({
 
 .label__active {
   .radio {
-    border-color: var(--color-active-radio-border);
+    // border-color: var(--color-active-radio-border);
+    border-color: v-bind(activeRadioBorder);
     background: var(--color-active-radio-background);
   }
 
   .radio::after {
-    background: var(--color-active-radio);
+    // background: var(--color-active-radio);
+    background: v-bind(activeRadioAfterBackground);
   }
+}
+
+.label__disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 </style>

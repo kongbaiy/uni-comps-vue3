@@ -8,6 +8,14 @@
     <zs-icon type="search-clear" size="20px" />
     <zs-icon type="checkbox" size="20px" color="orange" />
   </view>
+
+  <view class="module-title">
+    自定义大小颜色
+  </view>
+  <view class="group-cols-3">
+    <zs-icon type="search" size="20px" color="blue" />
+    <zs-icon type="checkbox" size="40px" color="orange" />
+  </view>
 </template>
 
 <script lang="ts" setup>

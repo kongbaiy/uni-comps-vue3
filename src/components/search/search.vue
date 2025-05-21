@@ -51,6 +51,7 @@ interface IProps {
   holdKeyboard?: boolean
   borderRadius?: string
   showIcon?: boolean
+  color?: string
   placeholder?: string
   placeholderColor?: string
   borderColor?: string
@@ -147,6 +148,7 @@ function handleClear() {
   flex: 1;
   height: 100%;
   font-size: v-bind(normal);
+  color: v-bind(color);
 }
 
 .search-suffix {

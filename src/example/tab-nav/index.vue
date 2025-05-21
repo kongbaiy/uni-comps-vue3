@@ -52,7 +52,7 @@
   <view class="module-title">
     结合容器使用
   </view>
-  <view class="p-x-20px">
+  <view class="p-20px">
     <tab-group>
       <tab-nav ref="navRef" vertical :data="tabData" height="200rpx" data-key="title">
         <template #default="row">
@@ -61,6 +61,7 @@
           </view>
         </template>
       </tab-nav>
+
       <tab-content :target-ref="navRef" :duration="0" height="100%">
         <template #default="{ currentIndex }">
           <view class="text-base">
