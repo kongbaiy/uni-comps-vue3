@@ -1,16 +1,24 @@
 <template>
   <view
+    v-if="!$slots.content"
     :class="[isExpand ? 'text-box' : 'text-box__active']"
   >
     <view :style="textContentStyle" class="text-content">
       {{ content }}
     </view>
-
     <view
       v-if="showEllipsis && !isExpand"
       class="ellipsis"
     >
       ...
+    </view>
+  </view>
+  <view
+    v-else
+    :class="[isExpand ? 'text-box' : 'text-box__active']"
+  >
+    <view class="text-content">
+      <slot name="content" />
     </view>
   </view>
 

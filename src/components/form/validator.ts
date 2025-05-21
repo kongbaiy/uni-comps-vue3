@@ -55,10 +55,13 @@ export function formValidator(options: IFormValidatorOptions) {
         }
 
         if (
-          (currentRule.required && (formValue === undefined || formValue === null || formValue === ''))
-          || (currentRule.pattern && !currentRule.pattern?.test(formValue))
-          || (currentRule.minLength && formValue?.length < currentRule.minLength)
-          || (currentRule.maxLength && formValue?.length > currentRule.maxLength)
+          !currentRule.validator
+          && (
+            (currentRule.required && (formValue === undefined || formValue === null || formValue === ''))
+            || (currentRule.pattern && !currentRule.pattern?.test(formValue))
+            || (currentRule.minLength && formValue?.length < currentRule.minLength)
+            || (currentRule.maxLength && formValue?.length > currentRule.maxLength)
+          )
         ) {
           errorInfo.push({
             formValue,
@@ -73,8 +76,9 @@ export function formValidator(options: IFormValidatorOptions) {
               title: currentRule.message,
               icon: 'none',
             })
-            return isBreak = false
           }
+
+          return isBreak = false
         }
       }
 

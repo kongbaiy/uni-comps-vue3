@@ -35,6 +35,25 @@
       </template>
     </zs-text>
   </view>
+
+  <view class="module-title">
+    自定义内容
+  </view>
+  <view class="p-20px">
+    <zs-text :content="content" :line-height="50">
+      <template #content>
+        <zs-button block type="primary">
+          按钮
+        </zs-button>
+        <zs-button block type="warning">
+          按钮
+        </zs-button>
+        <zs-button block type="default">
+          按钮
+        </zs-button>
+      </template>
+    </zs-text>
+  </view>
 </template>
 
 <script lang="ts" setup>

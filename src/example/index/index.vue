@@ -29,6 +29,10 @@ const list = ref<any[]>([
         path: '/example/icons/index',
       },
       {
+        text: 'Text 文字',
+        path: '/example/text/index',
+      },
+      {
         text: 'Popover 气泡',
         path: '/example/popover/index',
       },

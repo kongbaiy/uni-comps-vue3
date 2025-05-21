@@ -1,10 +1,10 @@
 <template>
   <view :class="getContainerClass(newLayout as Layout)">
-    <view class="label">
+    <view :style="labelStyle" class="label">
       <text v-if="required" class="required">
         *
       </text>
-      <view :style="labelStyle" class="label-text">
+      <view :style="labelTextStyle" class="label-text">
         {{ label }}
       </view>
     </view>
@@ -24,7 +24,7 @@
 <script lang="ts" setup>
 import { computed, getCurrentInstance, ref } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
-import type { Layout } from '../form/form.vue'
+import type { Align, Layout } from '../form/form.vue'
 
 import { fontSize } from '../common/config'
 
@@ -35,7 +35,7 @@ interface IProps {
   layout?: Layout
   labelWidth?: string
   labelGap?: string
-  align?: string
+  align?: Align
   border?: boolean
 }
 
@@ -53,12 +53,27 @@ const { normal } = fontSize
 
 const labelStyle = computed(() => {
   const { labelWidth, align, labelGap } = props
+  const alignValue = exposed?.align || align
 
-  return {
+  const style: AnyObject = {
     width: exposed?.labelWidth || labelWidth,
-    textAlignLast: exposed?.align || align,
+    // textAlignLast: exposed?.align || align,
     marginRight: exposed?.labelGap || labelGap,
   }
+
+  if (alignValue === 'justify') style.textAlignLast = 'justify'
+  else if (alignValue === 'right') style.justifyContent = 'flex-end'
+
+  return style
+})
+const labelTextStyle = computed(() => {
+  const { align } = props
+  const alignValue = exposed?.align || align
+  const style: AnyObject = {}
+
+  if (alignValue === 'justify') style.flex = 1
+
+  return style
 })
 
 function getContainerClass(layout: Layout) {

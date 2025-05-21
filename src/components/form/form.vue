@@ -14,21 +14,22 @@ export default {
 </script>
 
 <script lang="ts" setup>
-export type PromptMode = 'toast' | 'message'
+export type Prompt = 'toast' | 'message'
 export type Layout = 'left' | 'right' | 'top'
+export type Align = 'left' | 'right' | 'justify'
 
 interface IProps extends Pick<IFormValidatorOptions, 'rules'> {
   layout?: Layout
   modelValue: any
-  promptMode: PromptMode
+  prompt: Prompt
   labelWidth?: string
   labelGap?: string
-  align?: string
+  align?: Align
   gap?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  promptMode: 'message',
+  prompt: 'message',
 })
 const emits = defineEmits<(e: 'update:modelValue', value?: AnyObject) => void>()
 const instance: ComponentInternalInstance | any = getCurrentInstance()
@@ -36,7 +37,7 @@ const instance: ComponentInternalInstance | any = getCurrentInstance()
 defineExpose({
   ...props,
   validate: (callback: <T>(data: T) => void) => {
-    const { modelValue: formData = {}, rules, promptMode } = props
+    const { modelValue: formData = {}, rules, prompt } = props
     const children = instance.proxy?.$children
 
     children.forEach((item: any) => {
@@ -56,7 +57,7 @@ defineExpose({
     }).then(callback).catch((error) => {
       const { currentRule } = error[0]
 
-      if (promptMode === 'toast') {
+      if (prompt === 'toast') {
         uni.showToast({
           title: currentRule.message,
           icon: 'none',

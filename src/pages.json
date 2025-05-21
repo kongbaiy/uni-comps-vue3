@@ -1,15 +1,21 @@
 {
   "pages": [
     {
-      "path": "example/text/index",
+      "path": "example/form/index",
       "style": {
-        "navigationBarTitleText": "text"
+        "navigationBarTitleText": "form"
       }
     },
     {
       "path": "example/index/index",
       "style": {
         "navigationBarTitleText": "home"
+      }
+    },
+    {
+      "path": "example/text/index",
+      "style": {
+        "navigationBarTitleText": "text"
       }
     },
     {
