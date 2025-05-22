@@ -65,6 +65,27 @@ const list = ref<any[]>([
         text: 'Search 输入框',
         path: '/example/search/index',
       },
+      {
+        text: 'Textarea 多行输入框',
+        path: '/example/textarea/index',
+      },
+      {
+        text: 'Form 表单',
+        path: '/example/form/index',
+      },
+    ],
+  },
+  {
+    title: '交互组件',
+    children: [
+      {
+        text: 'SlideAction 滑动操作',
+        path: '/example/slide-action/index',
+      },
+      {
+        text: 'verifyCode 验证码',
+        path: '/example/verify-code/index',
+      },
     ],
   },
 ])

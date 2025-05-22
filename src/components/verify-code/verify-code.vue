@@ -2,7 +2,8 @@
   <default-button
     type="primary"
     size="small"
-    class-name="h-52"
+    :width="width"
+    :height="height"
     :loading="loading"
     :disabled="disabled"
     @tap="handleTap"
@@ -19,6 +20,8 @@ import DefaultButton from '../button/button.vue'
 interface IProps {
   title?: string
   delay?: number
+  width?: string
+  height?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {

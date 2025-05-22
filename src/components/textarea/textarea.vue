@@ -16,22 +16,22 @@ import { ref } from 'vue'
 import { fontSize, style } from '../common/config'
 
 interface IProps {
-  modelValue?: string
   disabled?: boolean
+  modelValue?: string
+  wordNumber?: boolean
   maxlength?: number
   placeholder?: string
   placeholderStyle?: string
   padding?: string
   height?: string
-  borderRadius?: string
   background?: string
-  wordNumber?: boolean
+  radius?: string
 }
 
 withDefaults(defineProps<IProps>(), {
   padding: '12rpx 20rpx',
   height: '240rpx',
-  borderRadius: '8rpx',
+  radius: '8rpx',
   ...style.textarea,
 })
 const emits = defineEmits(['update:modelValue'])
@@ -55,7 +55,7 @@ function handleTextareaInput(e: any) {
   font-size: v-bind(normal);
   color: var(--color-h1);
   background: v-bind(background);
-  border-radius: v-bind(borderRadius);
+  border-radius: v-bind(radius);
 
   .textarea {
     flex: 1;

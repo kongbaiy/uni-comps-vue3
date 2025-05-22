@@ -1,17 +1,37 @@
 {
   "pages": [
     {
-      "path": "example/form/index",
-      "style": {
-        "navigationBarTitleText": "form"
-      }
-    },
-    {
       "path": "example/index/index",
       "style": {
         "navigationBarTitleText": "home"
       }
     },
+    {
+      "path": "example/verify-code/index",
+      "style": {
+        "navigationBarTitleText": "verify code"
+      }
+    },
+    {
+      "path": "example/slide-action/index",
+      "style": {
+        "navigationBarTitleText": "slide action"
+      }
+    },
+
+    {
+      "path": "example/textarea/index",
+      "style": {
+        "navigationBarTitleText": "textarea"
+      }
+    },
+    {
+      "path": "example/form/index",
+      "style": {
+        "navigationBarTitleText": "form"
+      }
+    },
+
     {
       "path": "example/text/index",
       "style": {

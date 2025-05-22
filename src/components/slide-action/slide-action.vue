@@ -66,14 +66,14 @@ function handleTouchmove(e: TouchEvent) {
 function handleTouchEnd() {
   if (currentXOffset.value < 60) {
     currentXOffset.value = 0
-    closeSlideAction(() => {
+    stop(() => {
       open.value = false
     })
 
     return
   }
 
-  startSlideAction(() => {
+  start(() => {
     open.value = true
   })
 }
@@ -82,7 +82,7 @@ function setSlideActionContentStyle(style: Partial<CSSStyleDeclaration>) {
   slideActionContentStyle.value = style
 }
 
-async function startSlideAction(callback?: () => void) {
+async function start(callback?: () => void) {
   await setSlideActionContentStyle({
     transform: `translate3d(-${slideActionWidth.value}px, 0, 0)`,
     transitionDuration: '300ms',
@@ -90,7 +90,7 @@ async function startSlideAction(callback?: () => void) {
   callback?.()
 }
 
-async function closeSlideAction(callback?: () => void) {
+async function stop(callback?: () => void) {
   await setSlideActionContentStyle({
     transform: `translate3d(0, 0, 0)`,
     transitionDuration: '300ms',
@@ -99,8 +99,8 @@ async function closeSlideAction(callback?: () => void) {
 }
 
 defineExpose({
-  startSlideAction,
-  closeSlideAction,
+  start,
+  stop,
 })
 </script>
 

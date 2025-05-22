@@ -46,6 +46,7 @@
       ref="form"
       v-model="formData"
       :rules="rules"
+      layout="top"
       prompt="toast"
       label-width="200rpx"
       label-gap="20px"

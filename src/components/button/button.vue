@@ -34,6 +34,8 @@ interface IConfig {
 
 interface IProps extends IConfig {
   type?: Type
+  height?: string
+  width?: string
   size?: Size
   block?: boolean
   plain?: boolean
@@ -81,17 +83,23 @@ function handleClick() {
 }
 
 function getButtonStyle(): AnyObject | string {
-  const { restyle, color, borderColor, background, radius, shadow } = props
-
-  if (restyle) return restyle
-
-  return {
+  const { restyle, color, borderColor, background, radius, shadow, width, height } = props
+  const style: AnyObject = {
     color,
     borderColor,
     background,
     borderRadius: radius,
     shadow,
   }
+
+  if (restyle) return restyle
+  if (width) style.width = width
+  if (height) {
+    style.height = height
+    style.lineHeight = height
+  }
+
+  return style
 }
 
 function getButtonClass(): string {

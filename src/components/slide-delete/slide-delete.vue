@@ -18,9 +18,9 @@ const emits = defineEmits(['delete'])
 const slideActionRef = ref()
 
 function handleDelete() {
-  const { closeSlideAction } = slideActionRef.value
+  const { stop } = slideActionRef.value
 
-  closeSlideAction()
+  stop()
   emits('delete', slideActionRef.value)
 }
 </script>
