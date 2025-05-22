@@ -7,7 +7,7 @@
   </view>
 
   <view class="module-title">
-    自定义文案
+    手动触发
   </view>
   <view class="group-cols-3">
     <verify-code width="100px" height="60px" title="自定义文案" @start="handleStart" />
