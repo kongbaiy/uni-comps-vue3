@@ -27,18 +27,14 @@
 import { computed, ref } from 'vue'
 import { fontSize } from '../common/config'
 
-interface IAnyObject {
-  [key: string]: any
-}
-
-export interface IActionResponse extends IAnyObject {
+export interface IActionResponse extends AnyObject {
   code: string | number
   data: any[]
 }
 
 export interface IResponseConfig {
   pageCount: string | number
-  data: IAnyObject[]
+  data: AnyObject[]
 }
 
 interface IProps {
@@ -70,7 +66,7 @@ interface IProps {
   action?: (<T>(params?: T) => Promise<any>)
 
   // 请求参数
-  query?: IAnyObject
+  query?: AnyObject
 
   // 动态指定页数字段
   pageField?: string
@@ -79,7 +75,7 @@ interface IProps {
   responseConfig: <T>(res: T) => IResponseConfig
 
   // 绑定数据
-  modelValue?: IAnyObject
+  modelValue?: AnyObject
 
   // 暂时数据文字提示
   noDataText?: string
@@ -126,7 +122,7 @@ const noMoreData = computed(() => {
   return false
 })
 
-reAction()
+reaction()
 
 // 自定义下拉刷新被触发
 function handleRefresherrefresh() {
@@ -138,7 +134,7 @@ function handleRefresherrefresh() {
   const reActionBefore = () => refresherTriggered.value = true
   const reActionAfter = () => refresherTriggered.value = false
 
-  reAction(reActionBefore, reActionAfter)
+  reaction(reActionBefore, reActionAfter)
 }
 
 // 自定义下拉刷新被结束
@@ -168,7 +164,7 @@ function handleScrolltolower() {
   loadAction()
 }
 
-async function reAction(before?: () => void, after?: () => void) {
+async function reaction(before?: () => void, after?: () => void) {
   try {
     const {
       action,
@@ -220,7 +216,7 @@ function scrollToTop() {
 
 defineExpose({
   scrollToTop,
-  reAction,
+  reaction,
 })
 </script>
 

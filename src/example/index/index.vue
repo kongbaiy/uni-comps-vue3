@@ -88,6 +88,24 @@ const list = ref<any[]>([
       },
     ],
   },
+  {
+    title: '导航组件',
+    children: [
+      {
+        text: 'Navbar 导航栏',
+        path: '/example/navbar/index',
+      },
+    ],
+  },
+  {
+    title: '业务组件',
+    children: [
+      {
+        text: 'List 列表',
+        path: '/example/list/index',
+      },
+    ],
+  },
 ])
 
 function toNavigate(path: string) {

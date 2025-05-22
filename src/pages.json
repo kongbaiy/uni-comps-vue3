@@ -7,6 +7,12 @@
       }
     },
     {
+      "path": "example/navbar/index",
+      "style": {
+        "navigationBarTitleText": "navbar"
+      }
+    },
+    {
       "path": "example/verify-code/index",
       "style": {
         "navigationBarTitleText": "verify code"

@@ -1,5 +1,5 @@
 <template>
-  <view :class="`navbar ${isFixed && 'navbar-fixed'}`">
+  <view :class="`navbar ${fixed && 'navbar-fixed'}`">
     <view
       v-if="navbarInnerHeight"
       :style="{
@@ -22,13 +22,13 @@
           aria-label="返回"
         >
           <view
-            v-if="isShowGoBack"
+            v-if="showGoBack"
             :style="{ backgroundColor: getGoBackColor() }"
             class="go-back"
             @click="handleGoBack"
           />
           <view
-            v-if="isShowGoBackHome && showHome"
+            v-if="showGoBackHome && showHome"
             :style="{ backgroundColor: getGoBackColor() }"
             class="go-back-home"
             @click="handleGoBackHome"
@@ -49,7 +49,7 @@
   <slot v-if="$slots.default" />
 
   <view
-    v-else
+    v-if="!$slots.default && fixed"
     :style="{
       paddingTop: navbarPaddingTop,
       height: navbarInnerHeight,
@@ -71,28 +71,41 @@ import pagesJSON from '@/pages.json'
 interface IProps {
   title: string
   delta?: number
-  isFixed?: boolean
+  fixed?: boolean
   color?: string
   goBackColor?: string
   background?: string
-  backgroundTransition?: boolean
-  backgroundTransitionEnd?: number
+  transition?: boolean
+  distance?: number
   showHome?: boolean
-  onPageScroll?: <T>(args: T) => void
+  scroll?: <T>(args: T) => void
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   delta: 1,
   showHome: true,
-  backgroundTransitionEnd: 100,
+  distance: 100,
 })
 
-const isShowGoBack = ref<boolean>(false)
+const showGoBack = ref<boolean>(false)
+const showGoBackHome = ref<boolean>(false)
 const navbarLeftWidth: Ref = ref<string>()
 const navbarPaddingTop: Ref = ref<string>()
 const navbarInnerHeight: Ref = ref<string>()
 const scrollTop = ref<number>(0)
-const isShowGoBackHome = ref<boolean>(false)
+
+const backgroundValue = computed(() => {
+  const { transition, background, distance } = props
+
+  if (!transition) return background
+
+  const alpha = (scrollTop.value - distance) / distance
+  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
+  const rgb = background?.replace(/^rgba\(((,?\s*\d+){3}).+$/, '$1')
+
+  if (alpha && rgb) return `rgba(${rgb}, ${alpha})`
+  return `rgba(${rgb}, 0)`
+})
 
 onMounted(() => {
   const pages = getCurrentPages()
@@ -103,32 +116,19 @@ onMounted(() => {
     bottom: 0,
     width: 0,
     height: 0,
-  } }: UniNamespace.GetSystemInfoResult = uni.getSystemInfoSync()
+  } }: UniNamespace.GetWindowInfoResult = uni.getWindowInfo()
   const rect: UniApp.GetMenuButtonBoundingClientRectRes = uni.getMenuButtonBoundingClientRect()
 
   navbarLeftWidth.value = `${windowWidth - rect.left}px`
   navbarPaddingTop.value = `${safeArea.top}px`
   navbarInnerHeight.value = `${44 + (safeArea.top)}px`
 
-  if (pages.length > 1) isShowGoBack.value = true
-  isShowGoBackHome.value = getIsShowGoBackHome(pages[pages.length - 1].route!, pages)
+  if (pages.length > 1) showGoBack.value = true
+  showGoBackHome.value = getShowGoBackHome(pages[pages.length - 1].route!, pages)
 })
 
-props.onPageScroll?.((e: Page.PageScrollOption) => {
-  if (props.backgroundTransition) scrollTop.value = e.scrollTop
-})
-
-const backgroundValue = computed(() => {
-  const { backgroundTransition, background, backgroundTransitionEnd } = props
-
-  if (!backgroundTransition) return background
-
-  const alpha = (scrollTop.value - backgroundTransitionEnd) / backgroundTransitionEnd
-  // eslint-disable-next-line regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group
-  const rgb = background?.replace(/^rgba\(((,?\s*\d+){3}).+$/, '$1')
-
-  if (alpha && rgb) return `rgba(${rgb}, ${alpha})`
-  return `rgba(${rgb}, 0)`
+props.scroll?.((e: Page.PageScrollOption) => {
+  if (props.transition) scrollTop.value = e.scrollTop
 })
 
 function handleGoBack() {
@@ -179,7 +179,7 @@ function handleGoBackHome() {
   })
 }
 
-function getIsShowGoBackHome(pagePath: string, pageStack: Page.PageInstance<AnyObject, object>[]): boolean {
+function getShowGoBackHome(pagePath: string, pageStack: Page.PageInstance<AnyObject, object>[]): boolean {
   const { pages, tabBar } = pagesJSON
   const homePath = pages?.[0]?.path
   const isTabBarHome = tabBar?.list?.some((item: any) => item.pagePath === pagePath)
@@ -224,10 +224,11 @@ function getIsShowGoBackHome(pagePath: string, pageStack: Page.PageInstance<AnyO
 }
 
 .go-back-wrap {
-  display: flex;
-  align-items: center;
-  margin: -11px -18px 11px -16px;
-  padding: 11px 18px 11px 16px;
+    display: flex;
+    align-items: center;
+    padding: 11px 18px 11px 16px;
+    margin: -11px -18px -11px -16px;
+
 }
 
 .go-back {
