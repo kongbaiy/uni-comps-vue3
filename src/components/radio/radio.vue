@@ -21,6 +21,7 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
   size: 26,
 })
+const emits = defineEmits(['change'])
 const setModel = inject<<T>(args: T) => void>('set')
 
 const checked = ref<boolean>(false)
@@ -57,6 +58,7 @@ function handleLabel() {
 
 function onChecked(status: boolean) {
   checked.value = status
+  emits('change', status)
 }
 
 defineExpose({

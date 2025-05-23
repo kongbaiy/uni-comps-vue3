@@ -8,7 +8,7 @@ export interface IFormRule {
 }
 
 export interface IFormValidatorOptions {
-  formData: any
+  form: any
   rules: { [key: string]: IFormRule[] | any }
   prompt?: boolean
 }
@@ -16,11 +16,11 @@ export interface IFormValidatorOptions {
 /**
  * 表单验证器
  * @param {object} options
- * @param {object} options.formData
+ * @param {object} options.form
  * @param {IFormRule} options.rules
  */
 export function formValidator(options: IFormValidatorOptions) {
-  const { formData, rules, prompt } = options
+  const { form, rules, prompt } = options
 
   return new Promise((resolve, reject) => {
     let key: string
@@ -28,7 +28,7 @@ export function formValidator(options: IFormValidatorOptions) {
 
     for (key in rules) {
       const rule = rules[key]
-      const formValue = formData[key as unknown as number]
+      const formValue = form[key as unknown as number]
       let isBreak = true
 
       for (let r = 0; r < rule.length; r++) {
@@ -85,6 +85,6 @@ export function formValidator(options: IFormValidatorOptions) {
       if (!isBreak) return
     }
 
-    resolve(formData)
+    resolve(form)
   })
 }

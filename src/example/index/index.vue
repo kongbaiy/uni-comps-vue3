@@ -132,7 +132,7 @@ function toNavigate(path: string) {
   padding: 20rpx;
   font-size: 28rpx;
   color: #666;
-  background-color: #f5f5f5;
+  background-color: #fff;
   border-radius: 35rpx;
   box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
   transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);

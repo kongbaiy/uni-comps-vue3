@@ -1,6 +1,6 @@
 <template>
   <view
-    :style="{ borderColor, background, borderRadius }"
+    :style="{ borderColor, background, borderRadius: radius }"
     class="search-box"
   >
     <view class="search-prefix">
@@ -49,7 +49,7 @@ interface IProps {
   debounceTime?: number
   confirmType?: ConfirmType
   holdKeyboard?: boolean
-  borderRadius?: string
+  radius?: string
   showIcon?: boolean
   color?: string
   placeholder?: string
@@ -65,7 +65,7 @@ const props = withDefaults(defineProps<IProps>(), {
   placeholderColor: '#666',
   borderColor: '#ddd',
   background: '#fff',
-  borderRadius: '34rpx',
+  radius: '34rpx',
   ...style.search,
 })
 const emits = defineEmits(['input', 'input:debounce', 'focus', 'blur', 'confirm', 'update:debounce'])

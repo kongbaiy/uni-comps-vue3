@@ -21,7 +21,7 @@ export default defineConfig({
   },
 
   base: '/doc/',
-  title: 'uni comps vue3',
+  title: 'uni components vue3',
   description: 'A VitePress Site',
   srcDir: './src',
   themeConfig: {

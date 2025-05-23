@@ -23,6 +23,8 @@
 
 ## Events
 
+事件详情参考微 [信小程序开发文档](https://developers.weixin.qq.com/miniprogram/dev/component/button.html)
+
 | 事件名称 | 说明 | 参数 | 返回值 |
 |-------|-------|-------|-------|
 | getphonenumber | 获取手机号 | - | - |

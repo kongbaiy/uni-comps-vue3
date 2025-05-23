@@ -5,8 +5,10 @@
 <script lang="ts" setup>
 import { getCssDefaultUint } from '../common/index'
 
+type Type = 'checkbox' | 'search' | 'search-clear' | 'close'
+
 interface IProps {
-  type: string
+  type: Type
   size?: string | number
   color?: string
 }
