@@ -47,15 +47,15 @@
       <zs-button type="primary">
         自定义选项
       </zs-button>
-      <template #actions>
+      <template #options="{ close }">
         <view class="p-x-8px b-1 b-solid b-#409eff rd-8rpx">
-          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff">
+          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff" @click="close">
             自定义选项1
           </view>
-          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff">
+          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff" @click="close">
             自定义选项2
           </view>
-          <view class="text-base lh-60rpx">
+          <view class="text-base lh-60rpx" @click="close">
             自定义选项3
           </view>
         </view>
@@ -71,15 +71,15 @@
       <zs-button type="primary">
         顶部位置
       </zs-button>
-      <template #actions>
+      <template #options="{ close }">
         <view class="p-x-8px b-1 b-solid b-#409eff rd-8rpx">
-          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff">
+          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff" @click="close">
             自定义选项1
           </view>
-          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff">
+          <view class="text-base lh-60rpx b-b-1 b-b-solid b-b-#409eff" @click="close">
             自定义选项2
           </view>
-          <view class="text-base lh-60rpx">
+          <view class="text-base lh-60rpx" @click="close">
             自定义选项3
           </view>
         </view>

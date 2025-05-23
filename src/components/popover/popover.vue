@@ -26,10 +26,10 @@
       }"
       @transitionend="handleTransitionend"
     >
-      <view v-if="$slots.actions">
+      <view v-if="$slots.options">
         <slot
-          name="actions"
-          :close-popover="closePopover"
+          name="options"
+          :close="closePopover"
         />
       </view>
 
@@ -81,7 +81,7 @@ interface IOptions {
 
 interface IFieldNames {
   label: string
-  value: any
+  value: string
 }
 
 interface IProps {
@@ -107,7 +107,7 @@ const props = withDefaults(defineProps<IProps>(), {
     value: 'value',
   }),
 })
-const emits = defineEmits(['update:modelValue', 'popover', 'open'])
+const emits = defineEmits(['update:modelValue', 'change', 'open'])
 
 const { windowWidth = 0, windowHeight = 0 } = uni.getWindowInfo()
 const show = ref<boolean>(false)
@@ -168,7 +168,7 @@ function handlePopoverListItem(currentData: IOptions, currentIndex: number) {
 
   closePopover()
   emits('update:modelValue', value)
-  emits('popover', currentData, currentIndex)
+  emits('change', currentData, currentIndex)
 }
 
 function getPropPositionY() {

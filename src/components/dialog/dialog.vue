@@ -28,7 +28,7 @@
 
   <view
     v-if="showMask && show" catchtouchmove="emptyFunction"
-    :class="['dialog-mask'!, active ? 'dialog-mask__active' : '']" @click="clickMaskClose && handleClose()"
+    :class="['dialog-mask'!, active ? 'dialog-mask__active' : '']" @click="maskClose && handleClose()"
   />
 </template>
 
@@ -43,7 +43,7 @@ interface IProps {
   title?: string
   modelValue: boolean
   showMask: boolean
-  clickMaskClose?: boolean
+  maskClose?: boolean
   contentHeight?: string
   contentPadding?: string
   cancelText?: string
