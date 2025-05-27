@@ -77,7 +77,7 @@ interface IProps {
   // 绑定数据
   modelValue?: AnyObject
 
-  // 暂时数据文字提示
+  // 暂无数据文字提示
   noDataText?: string
 
   // 无更多数据文字提示

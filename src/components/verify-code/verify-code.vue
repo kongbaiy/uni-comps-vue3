@@ -18,14 +18,14 @@ import { computed, ref } from 'vue'
 import DefaultButton from '../button/button.vue'
 
 interface IProps {
-  title?: string
+  text?: string
   delay?: number
   width?: string
   height?: string
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  title: '获取验证码',
+  text: '获取验证码',
   delay: 60,
 })
 const emits = defineEmits(['start'])
@@ -36,7 +36,7 @@ const time = ref<number>(props.delay)
 let interval: NodeJS.Timeout | null
 
 const buttonText = computed(() => {
-  if (time.value === props.delay) return props.title
+  if (time.value === props.delay) return props.text
   return `${time.value}s`
 })
 

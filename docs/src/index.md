@@ -3,13 +3,13 @@
 layout: home
 
 hero:
-  name: 'Uni comps vue3'
+  name: 'Uni components vue3'
   text: '组件文档'
   tagline: 'The configuration can be customized'
   actions:
     - theme: brand
       text: 快速开始
-      link: /button/button
+      link: /basic/button
 
     - theme: alt
       text: Github
