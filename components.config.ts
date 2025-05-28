@@ -1,12 +1,12 @@
-import { useStyle } from './src/components/common/hooks'
-import type { IConfig } from './src/components/common/interface'
+import { useConfig } from './src/components/common/hooks'
 
-const config: IConfig = {
+
+export default useConfig({
   style: {
-    ...useStyle({
+    button: {
       paddingLeft: '20rpx',
       paddingRight: '20rpx',
-    }, ['button']),
+    }
   },
   size: {
     mini: '40rpx',
@@ -20,6 +20,4 @@ const config: IConfig = {
     normal: '32rpx',
     large: '36rpx',
   },
-}
-
-export default config
+})

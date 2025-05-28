@@ -1,8 +1,7 @@
 import type { IConfig } from './interface'
 import { useStyle } from './hooks'
 
-const uniCompsConfig = import.meta.glob('/uni-comps.config.ts', { eager: true })['/uni-comps.config.ts'] as unknown as AnyObject
-const customConfig = uniCompsConfig?.default || {}
+const { default: customConfig } = import.meta.glob('/components.config.ts', { eager: true })['/components.config.ts'] as unknown as AnyObject
 
 const defaultConfig: IConfig = {
   style: {
@@ -25,8 +24,7 @@ const defaultConfig: IConfig = {
   },
 }
 
-export const style = customConfig.style || defaultConfig.style
+export const style = customConfig.getConfig('style') || defaultConfig.style
+export const size = customConfig.getConfig('size') || defaultConfig.size
+export const fontSize = customConfig.getConfig('fontSize') || defaultConfig.fontSize
 
-export const size = customConfig.size || defaultConfig.size
-
-export const fontSize = customConfig.fontSize || defaultConfig.fontSize
