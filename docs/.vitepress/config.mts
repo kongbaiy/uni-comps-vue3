@@ -3,15 +3,6 @@ import { defineConfig } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
 
-const vitepressSidebarOptions = {
-  documentRootPath: 'docs/src', // 文档根目录
-  collapsed: false, // 折叠组关闭
-  collapseDepth: 2, // 折叠组2级菜单
-  removePrefixAfterOrdering: true, // 删除前缀，必须与prefixSeparator一起使用
-  prefixSeparator: '_', // 删除前缀的符号
- 
-}
-
 export default defineConfig({
   markdown: {
     config(md) {
@@ -30,23 +21,40 @@ export default defineConfig({
   ],
   srcDir: './src',
   themeConfig: {
-     search: {
+    search: {
       provider: 'local',
     },
     nav: [
-      { text: 'Guide', link: '/guide' },
-      {
-        text: 'Dropdown Menu',
-        items: [
-          { text: 'Item A', link: '/item-1' },
-          { text: 'Item B', link: '/item-2' },
-          { text: 'Item C', link: '/item-3' },
-        ],
-      },
+      { text: '指南', link: '/guide/install' },
+      { text: '组件', link: '/components/basic/button' },
+
     ],
     outline: {
       label: '目录',
     },
-    sidebar: generateSidebar(vitepressSidebarOptions),
+    sidebar: generateSidebar([
+      {
+        documentRootPath: 'docs/src', // 组件文档根目录
+        collapsed: false, // 折叠组关闭
+        collapseDepth: 2, // 折叠组2级菜单
+        scanStartPath: 'components',
+        basePath: '/components/',
+        resolvePath: '/components/',
+        useTitleFromFileHeading: true,
+        removePrefixAfterOrdering: true, // 删除前缀，必须与prefixSeparator一起使用
+        prefixSeparator: '_', // 删除前缀的符号
+      },
+      {
+        documentRootPath: 'docs/src', // 组件文档根目录
+        collapsed: false, // 折叠组关闭
+        collapseDepth: 2, // 折叠组2级菜单
+        scanStartPath: 'guide',
+        basePath: '/guide/',
+        resolvePath: '/guide/',
+        useTitleFromFileHeading: true,
+        removePrefixAfterOrdering: true, // 删除前缀，必须与prefixSeparator一起使用
+        prefixSeparator: '_', // 删除前缀的符号
+      }
+    ]),
   },
 })
