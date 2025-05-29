@@ -25,6 +25,7 @@ const iconFontSize = getCssDefaultUint(props.size)
 @import url('../assets/icons/index.scss');
 
 .icon {
+    display: inline-block;
     font-size: v-bind(iconFontSize);
     color: v-bind(color);
 }

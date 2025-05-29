@@ -1,4 +1,4 @@
-import { IConfig, IStyle, ISize, IFontSize, IStyleAttribute } from './interface/index'
+import type { IConfig, IFontSize, ISize, IStyle, IStyleAttribute } from './interface/index'
 
 export function useStyle(attribute: IStyleAttribute, componentNames: string[]) {
   const style: AnyObject = {}
@@ -11,13 +11,13 @@ export function useStyle(attribute: IStyleAttribute, componentNames: string[]) {
   return style
 }
 
-class  Config {
+class Config {
   static style: IStyle
   static size: ISize
   static fontSize: IFontSize
 
   constructor() {
-    
+
   }
 
   setConfig(config: IConfig) {
@@ -32,7 +32,7 @@ class  Config {
 }
 
 export function useConfig(_config: IConfig) {
-  const config = new Config();
+  const config = new Config()
 
   config.setConfig(_config)
   return config

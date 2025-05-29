@@ -1,7 +1,7 @@
 import type { IConfig } from './interface'
 import { useStyle } from './hooks'
 
-const { default: customConfig } = import.meta.glob('/components.config.ts', { eager: true })['/components.config.ts'] as unknown as AnyObject
+const { default: customConfig } = import.meta.glob('/components.config.ts', { eager: true })['/components.config.ts'] as unknown as AnyObject || {}
 
 const defaultConfig: IConfig = {
   style: {
@@ -27,4 +27,3 @@ const defaultConfig: IConfig = {
 export const style = customConfig.getConfig('style') || defaultConfig.style
 export const size = customConfig.getConfig('size') || defaultConfig.size
 export const fontSize = customConfig.getConfig('fontSize') || defaultConfig.fontSize
-
