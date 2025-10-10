@@ -1,12 +1,10 @@
 <template>
-  <scroll-view
-    scroll-y enable-passiv scroll-anchoring :refresher-enabled="refresherEnabled"
+  <scroll-view scroll-y enable-passiv scroll-anchoring :refresher-enabled="refresherEnabled"
     :refresher-threshold="refresherThreshold" :refresher-triggered="refresherTriggered"
     :upper-threshold="upperThreshold" :lower-threshold="lowerThreshold" :scroll-top="newScrollTop"
     :scroll-with-animation="scrollWithAnimation" :show-scrollbar="showScrollbar" :style="{ height }"
     class="scroll-view-list" @refresherrefresh="handleRefresherrefresh" @refresherabort="handleRefresherabort"
-    @scrolltoupper="handleScrolltoupper" @scrolltolower="handleScrolltolower"
-  >
+    @scrolltoupper="handleScrolltoupper" @scrolltolower="handleScrolltolower">
     <slot />
 
     <!-- 暂无数据提示 -->
@@ -111,7 +109,7 @@ const response = ref<IResponseConfig>({
   data: [],
 })
 const reActioned = ref<boolean>(false)
-const { normal } = fontSize
+const { normal } = fontSize!
 
 const noData = computed(() => {
   if (!response.value.data?.length && reActioned.value) return true
@@ -220,32 +218,32 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .scroll-view-list {
-    overflow-anchor: auto;
+  overflow-anchor: auto;
 }
 
 .no-data,
 .no-more-data {
-    padding: 42rpx 0;
-    font-size: v-bind(normal);
-    color: var(--color-h3);
-    text-align: center;
+  padding: 42rpx 0;
+  font-size: v-bind(normal);
+  color: var(--color-h3);
+  text-align: center;
 }
 
 .no-data-msg {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .no-data-title {
-    margin-top: 40rpx;
-    font-size: v-bind(normal);
-    font-weight: 600;
-    color: var(--color-h3);
-    text-align: center;
+  margin-top: 40rpx;
+  font-size: v-bind(normal);
+  font-weight: 600;
+  color: var(--color-h3);
+  text-align: center;
 }
 </style>

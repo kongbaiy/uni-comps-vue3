@@ -1,4 +1,4 @@
-# uni-comps-vue3
+# uni-components-vue3
 
 ## 安装依赖
 

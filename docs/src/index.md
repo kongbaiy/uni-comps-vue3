@@ -9,11 +9,11 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /guide/install
+      link: /guide/index
 
     - theme: alt
-      text: Github
-      link: https://github.com/kongbaiy/uni-comps-vue3/tree/dev
+      text: Gitlab
+      link: https://lightsoft.life:8001/web/uni-components-vue3
 
 features:
   - title: 组件
@@ -21,7 +21,7 @@ features:
     link: /components/basic/button
 
   - title: 自定义配置
-    details: "Global"
-    link: /components/more/config
+    details: "config"
+    link: /components/more/use-config
 
 ---

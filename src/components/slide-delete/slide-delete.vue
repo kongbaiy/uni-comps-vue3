@@ -25,15 +25,15 @@ function handleDelete() {
 }
 </script>
 
-<style lang="scss" scoped>
-  .delete {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 140rpx;
-    height: 100%;
-    color: white;
-    background-color: var(--color-error);
-  }
+<style scoped>
+.delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 140rpx;
+  height: 100%;
+  color: white;
+  background-color: var(--color-error);
+}
 </style>

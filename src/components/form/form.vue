@@ -52,7 +52,7 @@ defineExpose({
     })
 
     formValidator({
-      formData,
+      form: formData,
       rules,
     }).then(callback).catch((error) => {
       const { currentRule } = error[0]
@@ -85,10 +85,8 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
-.form-item {
-  &:last-child {
-    border-color: transparent;
-  }
+<style scoped>
+.form-item:last-child {
+  border-color: transparent;
 }
 </style>

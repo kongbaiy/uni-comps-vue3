@@ -45,8 +45,8 @@ const list = ref<any[]>([
         path: '/example/dialog/index',
       },
       {
-        text: 'TabNav 标签页',
-        path: '/example/tab-nav/index',
+        text: 'Tab 标签页',
+        path: '/example/tab/index',
       },
     ],
   },
@@ -83,7 +83,7 @@ const list = ref<any[]>([
         path: '/example/slide-action/index',
       },
       {
-        text: 'verifyCode 验证码',
+        text: 'VerifyCode 验证码',
         path: '/example/verify-code/index',
       },
     ],

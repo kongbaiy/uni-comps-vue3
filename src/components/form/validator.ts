@@ -24,7 +24,7 @@ export function formValidator(options: IFormValidatorOptions) {
 
   return new Promise((resolve, reject) => {
     let key: string
-    const errorInfo = []
+    const errorInfo: any[] = []
 
     for (key in rules) {
       const rule = rules[key]

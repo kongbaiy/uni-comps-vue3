@@ -75,15 +75,14 @@ export function isNull(obj: any): boolean {
   if (
     Object.prototype.toString.call(obj) === '[object Object]'
     && !Reflect.ownKeys(obj).length
-  ) { return true
-  }
+  ) return true
 
   if (Array.isArray(obj) && !obj.length) return true
 
-  if (!(obj instanceof Object)
+  if (
+    !(obj instanceof Object)
     && (obj === undefined || obj === null || obj === '')
-  ) { return true
-  }
+  ) return true
 
   return false
 }
@@ -119,6 +118,14 @@ export function getMapValue(mapData: any[], keys: string[]): string {
   return str
 }
 
-export function getCssDefaultUint(value: number | string, cssUnit: string = 'rpx'): string {
-  return Number(value) ? `${value}${cssUnit}` : `${value}`
+/**
+ * 获取 css 默认单位
+ *
+ * @param {number | string} value
+ * @param {string} unit
+ * @return {string}
+ * @example getCSSDefaultUint(10) // 10rpx
+ */
+export function getCSSDefaultUint(value: number | string, unit: string = 'rpx'): string {
+  return Number(value) ? `${value}${unit}` : `${value}`
 }

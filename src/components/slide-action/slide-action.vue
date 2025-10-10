@@ -1,20 +1,10 @@
 <template>
-  <view
-    class="slide-action-box"
-    @touchstart="handleTouchstart"
-    @touchmove="handleTouchmove"
-    @touchend="handleTouchEnd"
-  >
-    <view
-      :style="slideActionContentStyle"
-      class="slide-action-content"
-    >
+  <view class="slide-action-box" @touchstart="handleTouchstart" @touchmove="handleTouchmove" @touchend="handleTouchEnd">
+    <view :style="slideActionContentStyle" class="slide-action-content">
       <view class="slide-action-slot">
         <slot />
       </view>
-      <view
-        class="slide-action"
-      >
+      <view class="slide-action">
         <slot name="action" />
       </view>
     </view>
@@ -104,22 +94,22 @@ defineExpose({
 })
 </script>
 
-  <style lang="scss" scoped>
-  .slide-action-box {
-    overflow: hidden;
-    position: relative;
-  }
+<style scoped>
+.slide-action-box {
+  overflow: hidden;
+  position: relative;
+}
 
-  .slide-action-content {
-    display: flex;
-    transition: transform 0s cubic-bezier(0, 0, 0.2, 1);
-  }
+.slide-action-content {
+  display: flex;
+  transition: transform 0s cubic-bezier(0, 0, 0.2, 1);
+}
 
-  .slide-action-slot {
-    min-width: 100%;
-  }
+.slide-action-slot {
+  min-width: 100%;
+}
 
-  .slide-action {
-    min-height: 100%;
-  }
-  </style>
+.slide-action {
+  min-height: 100%;
+}
+</style>

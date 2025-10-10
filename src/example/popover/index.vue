@@ -130,7 +130,7 @@
       <zs-button type="primary">
         点击选项 xxx
       </zs-button>
-      <template #actions>
+      <template #options>
         <view>英雄名称a</view>
         <view>英雄名称b</view>
         <view>英雄名称c</view>

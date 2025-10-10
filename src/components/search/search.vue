@@ -66,13 +66,13 @@ const props = withDefaults(defineProps<IProps>(), {
   borderColor: '#ddd',
   background: '#fff',
   radius: '34rpx',
-  ...style.search,
+  ...style?.search,
 })
 const emits = defineEmits(['input', 'input:debounce', 'focus', 'blur', 'confirm', 'update:debounce'])
 
 const inputValue = ref<string>('')
 const newFocus = ref<boolean>(false)
-const { normal } = fontSize
+const { normal } = fontSize!
 
 const inputDebounce = debounce((value: string) => {
   emits('input:debounce'!, value)
@@ -127,7 +127,7 @@ function handleClear() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .search-box {
   display: flex;
   align-items: center;

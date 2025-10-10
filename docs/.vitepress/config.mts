@@ -12,7 +12,7 @@ export default defineConfig({
     },
   },
 
-  base: '/doc/',
+  base: '/components/',
   title: 'uni components vue3',
   description: 'uniapp components for Vue 3',
   head: [
@@ -25,7 +25,7 @@ export default defineConfig({
       provider: 'local',
     },
     nav: [
-      { text: '指南', link: '/guide/install' },
+      { text: '指南', link: '/guide/index' },
       { text: '组件', link: '/components/basic/button' },
 
     ],

@@ -3,13 +3,8 @@
     <view :style="checkboxStyle" class="checkbox">
       <slot name="icon" :checked="checked" />
 
-      <custom-icon
-        v-if="!$slots.icon"
-        v-show="checked"
-        type="checkbox"
-        :size="size"
-        :color="checkedColor || `var(--color-active-checkbox)`"
-      />
+      <custom-icon v-if="!$slots.icon" v-show="checked" type="checkbox" :size="size"
+        :color="checkedColor || `var(--color-active-checkbox)`" />
     </view>
     <slot />
   </label>
@@ -17,7 +12,7 @@
 
 <script lang="ts" setup>
 import { computed, inject, ref, watch } from 'vue'
-import { getCssDefaultUint } from '../common/index'
+import { getCSSDefaultUint } from '../common/index'
 
 import customIcon from '../icon/icon.vue'
 
@@ -42,8 +37,8 @@ const checked = ref<boolean>()
 
 const checkboxStyle = computed(() => {
   const { checkedColor, size, radius } = props
-  const sizeValue = getCssDefaultUint(size)
-  const radiusValue = getCssDefaultUint(radius!)
+  const sizeValue = getCSSDefaultUint(size)
+  const radiusValue = getCSSDefaultUint(radius!)
   const style: AnyObject = {
     width: sizeValue,
     height: sizeValue,
@@ -78,32 +73,30 @@ defineExpose({
 })
 </script>
 
-  <style lang="scss" scoped>
+<style scoped>
 .label {
-    display: inline-flex;
-    align-items: center;
-    vertical-align: top;
-  }
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+}
 
-  .checkbox {
-    transition: all 200ms ease-out;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--color-checkbox-border);
-    background: var(--color-checkbox-background);
-  }
+.checkbox {
+  transition: all 200ms ease-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-checkbox-border);
+  background: var(--color-checkbox-background);
+}
 
-  .label__active {
-    .checkbox {
-      color: var(--theme);
-      border-color: var(--color-active-checkbox-border);
-      background-color: var(--color-active-checkbox-background);
-    }
-  }
+.label__active .checkbox {
+  color: var(--theme);
+  border-color: var(--color-active-checkbox-border);
+  background-color: var(--color-active-checkbox-background);
+}
 
-  .label__disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  </style>
+.label__disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+</style>

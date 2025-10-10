@@ -1,4 +1,4 @@
-# Popover
+# Popup
 
 ## Props
 

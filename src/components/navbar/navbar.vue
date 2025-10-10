@@ -189,7 +189,7 @@ function getShowGoBackHome(pagePath: string, pageStack: Page.PageInstance<AnyObj
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .navbar {
   --color-black:rgba(0,0,0,.9);
   --color-white: rgba(255,255,255,0.9);

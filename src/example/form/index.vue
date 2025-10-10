@@ -43,7 +43,7 @@
   </view>
   <view class="p-x-20px">
     <zs-form
-      ref="form"
+      ref="formToastPrompt"
       v-model="formData"
       :rules="rules"
       layout="top"
@@ -69,7 +69,7 @@
           class="form-input"
         >
       </zs-form-item>
-      <zs-button block type="primary" @click="handleSubmit">
+      <zs-button block type="primary" @click="handleSubmit(formToastPrompt)">
         提交
       </zs-button>
 
@@ -180,9 +180,10 @@ const rules: AnyObject = {
   ],
 }
 const form = ref()
+const formToastPrompt = ref()
 
-function handleSubmit() {
-  form.value.validate(() => {
+function handleSubmit(formRef = form.value) {
+ formRef.validate(() => {
   })
 }
 

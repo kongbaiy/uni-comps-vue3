@@ -1,9 +1,7 @@
 <template>
   <view class="textarea-container">
-    <textarea
-      :disabled="disabled" :placeholder="placeholder" :placeholderStyle="placeholderStyle"
-      :maxlength="maxlength" class="textarea" @input="handleTextareaInput"
-    />
+    <textarea :disabled="disabled" :placeholder="placeholder" :placeholderStyle="placeholderStyle"
+      :maxlength="maxlength" class="textarea" @input="handleTextareaInput" />
     <view v-if="wordNumber && maxlength" class="word-number">
       {{ wordNumber }} / {{ maxlength }}
     </view>
@@ -32,12 +30,12 @@ withDefaults(defineProps<IProps>(), {
   padding: '12rpx 20rpx',
   height: '240rpx',
   radius: '8rpx',
-  ...style.textarea,
+  ...style?.textarea,
 })
 const emits = defineEmits(['update:modelValue'])
 
 const wordNumber = ref<number>(0)
-const { small, normal } = fontSize
+const { small, normal } = fontSize!
 
 function handleTextareaInput(e: any) {
   wordNumber.value = e.target.value.length
@@ -45,7 +43,7 @@ function handleTextareaInput(e: any) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .textarea-container {
   overflow: hidden;
   display: flex;
@@ -56,16 +54,16 @@ function handleTextareaInput(e: any) {
   color: var(--color-h1);
   background: v-bind(background);
   border-radius: v-bind(radius);
+}
 
-  .textarea {
-    flex: 1;
-    width: 100%;
-  }
+.textarea-container .textarea {
+  flex: 1;
+  width: 100%;
+}
 
-  .word-number {
-    font-size: v-bind(small);
-    color: var(--color-h3);
-    text-align: right;
-  }
+.textarea-container .word-number {
+  font-size: v-bind(small);
+  color: var(--color-h3);
+  text-align: right;
 }
 </style>

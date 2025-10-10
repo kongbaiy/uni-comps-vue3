@@ -56,14 +56,14 @@ const props = withDefaults(defineProps<IProps>(), {
   paddingLeft: '36rpx',
   paddingRight: '36rpx',
   radius: '0',
-  ...style.button,
+  ...style?.button,
 })
 const emits = defineEmits(['getphonenumber', 'getuserinfo', 'chooseavatar', 'submit', 'reset', 'click'])
 
 const instance: ComponentInternalInstance | any = getCurrentInstance()
 
-const buttonHeight = size[props.size]
-const buttonFontSize = fontSize[props.size]
+const buttonHeight = size?.[props.size]
+const buttonFontSize = fontSize?.[props.size]
 
 function handleClick() {
   const { formType } = props
@@ -116,7 +116,7 @@ function getButtonClass(): string {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .button {
   display: flex;
   align-items: center;

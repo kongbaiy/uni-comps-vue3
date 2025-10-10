@@ -49,7 +49,7 @@ const { exposed } = instance.parent || {}
 const { gap } = exposed
 const newLayout: IProps['layout'] = (exposed?.layout || props.layout) as Layout
 const message = ref<string>('')
-const { normal } = fontSize
+const { normal } = fontSize!
 
 const labelStyle = computed(() => {
   const { labelWidth, align, labelGap } = props
@@ -94,7 +94,7 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .layout {
   margin-bottom: v-bind(gap);
 }
@@ -105,9 +105,10 @@ defineExpose({
 
 .layout-right {
   display: flex;
-  .label-text {
-    text-align: right;
-  }
+}
+
+.layout-right .label-text {
+  text-align: right;
 }
 
 .layout-top {

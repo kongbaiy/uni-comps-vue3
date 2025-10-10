@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 import { computed, inject, ref, watch } from 'vue'
 
-import { getCssDefaultUint } from '../common/index'
+import { getCSSDefaultUint } from '../common/index'
 
 interface IProps {
   value?: any
@@ -28,7 +28,7 @@ const checked = ref<boolean>(false)
 
 const radioStyle = computed(() => {
   const { size } = props
-  const sizeValue = getCssDefaultUint(size)
+  const sizeValue = getCSSDefaultUint(size)
 
   return {
     width: sizeValue,
@@ -66,7 +66,7 @@ defineExpose({
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .label {
   position: relative;
 }
@@ -80,31 +80,28 @@ defineExpose({
   border: 1px solid var(--color-radio-border);
   background: var(--color-radio-background);
   border-radius: 50%;
-  &::after {
-    content: "";
-    transition: all 200ms ease-out;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 60%;
-    background-color: var(--color-radio);
-    border-radius: 50%;
-  }
 }
 
-.label__active {
-  .radio {
-    // border-color: var(--color-active-radio-border);
-    border-color: v-bind(activeRadioBorder);
-    background: var(--color-active-radio-background);
-  }
+.radio::after {
+  content: "";
+  transition: all 200ms ease-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 60%;
+  background-color: var(--color-radio);
+  border-radius: 50%;
+}
 
-  .radio::after {
-    // background: var(--color-active-radio);
-    background: v-bind(activeRadioAfterBackground);
-  }
+.label__active .radio {
+  border-color: v-bind(activeRadioBorder);
+  background: var(--color-active-radio-background);
+}
+
+.label__active .radio::after {
+  background: v-bind(activeRadioAfterBackground);
 }
 
 .label__disabled {

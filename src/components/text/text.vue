@@ -51,7 +51,7 @@ interface IProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   lineClamp: 1,
-  lineHeight: Number.parseInt(fontSize.normal) * 1.4,
+  lineHeight: Number.parseInt(fontSize?.normal || '1') * 1.4,
   expandText: '展开',
   collapseText: '收起',
 })
@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<IProps>(), {
 const getNode = new NodeSelector()
 const showEllipsis = ref<boolean>(false)
 const isExpand = ref<boolean>(false)
-const { normal, small } = fontSize
+const { normal, small } = fontSize!
 
 const textBoxHeight = computed(() => `${props.lineClamp * props.lineHeight}rpx`)
 const textContentStyle = computed(() => {
@@ -91,7 +91,7 @@ function handleExpand(status: boolean) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .text-box,
   .text-box__active {
     overflow: hidden;

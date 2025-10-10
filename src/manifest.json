@@ -56,7 +56,7 @@
       "base": "./"
     },
     "domain": "",
-    "title": "uni-comps-vue",
+    "title": "uni-components-vue",
     "sdkConfigs": {}
   },
   "quickapp": {},

@@ -1,4 +1,4 @@
-# Popover
+# Dialog
 
 ## Props
 

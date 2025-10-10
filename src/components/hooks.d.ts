@@ -1,1 +1,1 @@
-declare module 'uni-comps-vue3/hooks'
+declare module 'uni-components-vue3/hooks'

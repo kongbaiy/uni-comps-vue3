@@ -24,6 +24,7 @@ const defaultConfig: IConfig = {
   },
 }
 
-export const style = customConfig.getConfig('style') || defaultConfig.style
-export const size = customConfig.getConfig('size') || defaultConfig.size
-export const fontSize = customConfig.getConfig('fontSize') || defaultConfig.fontSize
+export const style: IConfig['style'] = customConfig?.getConfig('style') || defaultConfig.style
+export const size: IConfig['size'] = customConfig?.getConfig('size') || defaultConfig.size
+export const fontSize: IConfig['fontSize'] = customConfig?.getConfig('fontSize') || defaultConfig.fontSize
+

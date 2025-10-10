@@ -52,7 +52,7 @@ interface IProps {
 
 const props = withDefaults(defineProps<IProps>(), {
   showMask: true,
-  contentPadding: style.dialog?.padding || '0 20rpx 20rpx 20rpx',
+  contentPadding: style?.dialog?.padding || '0 20rpx 20rpx 20rpx',
   cancelText: '取消',
   confirmText: '确定',
 })
@@ -62,24 +62,7 @@ const emits = defineEmits(['update:modelValue', 'cancel', 'confirm'])
 const show = ref<boolean>(false)
 const active: Ref = ref<boolean>(false)
 const getNode = new NodeSelector()
-const { normal, large } = fontSize
-
-// watch(props, (newProps: any) => {
-//   const { modelValue } = newProps
-
-//   if (modelValue) {
-//     show.value = true
-//     getNode.query('.dialog', () => {
-//       active.value = newProps.modelValue
-//     })
-//   }
-//   else {
-//     active.value = false
-//   }
-// }, {
-//   deep: true,
-//   immediate: true,
-// })
+const { normal, large } = fontSize!
 
 watch(() => props.modelValue, (newValue) => {
   if (newValue) show.value = newValue
@@ -113,7 +96,7 @@ function handleCancel() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .dialog {
   overflow: hidden;
   opacity: 0;

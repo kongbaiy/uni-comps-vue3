@@ -1,11 +1,11 @@
 <template>
   <default-button
-    type="primary"
-    size="small"
-    :width="width"
-    :height="height"
-    :loading="loading"
-    :disabled="disabled"
+   type="primary" 
+   size="small" 
+   :width="width" 
+   :height="height" 
+   :loading="loading" 
+   :disabled="disabled"
     @tap="handleTap"
   >
     {{ buttonText }}
@@ -41,23 +41,27 @@ const buttonText = computed(() => {
 })
 
 function next() {
-  loading.value = true
+  if (disabled.value) return
+
+  disabled.value = true;
   startInterval()
 }
 
 function handleTap() {
+  if(!disabled.value) loading.value = true
+
   emits('start', next)
 }
 
 function startInterval() {
+  console.log('startInterval: ', startInterval);
   if (interval) return
 
+  time.value -= 1
+  loading.value = false;
   interval = setInterval(() => {
-    if (loading.value) loading.value = false
-
     if (time.value > 1) {
       time.value -= 1
-      disabled.value = true
     }
     else {
       clearInterval(interval as NodeJS.Timeout)

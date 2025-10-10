@@ -70,7 +70,7 @@
       }
     },
     {
-      "path": "example/tab-nav/index",
+      "path": "example/tab/index",
       "style": {
         "navigationBarTitleText": "tab nav"
       }
@@ -108,7 +108,7 @@
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-comps-vue3",
+    "navigationBarTitleText": "uni-components-vue3",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   }

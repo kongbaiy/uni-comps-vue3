@@ -1,6 +1,6 @@
 {
-  "name": "uni-comps-vue3",
-  "version": "2.3.1",
+  "name": "@lightsoft/uni-components-vue3",
+  "version": "1.2.1",
   "description": "uniapp vue3 component",
   "author": "konbai",
   "license": "MIT",
@@ -9,7 +9,10 @@
       "types": "./package/common/interface/index.ts"
     },
     "./hooks": "./package/common/hooks.ts",
-    "./package/index.css": "./package/index.css"
+    "./style.css": "./package/index.css",
+    "./package/*": {
+      "import": "./package/*"
+    }
   },
   "main": "./package/index",
   "files": [

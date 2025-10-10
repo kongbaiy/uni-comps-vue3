@@ -25,6 +25,7 @@ export interface IStyleAttribute {
   paddingBottom?: string
   paddingLeft?: string
   paddingRight?: string
+  padding?: string
   width?: string
   height?: string
 }

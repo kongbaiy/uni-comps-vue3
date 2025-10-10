@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getCssDefaultUint } from '../common/index'
+import { getCSSDefaultUint } from '../common/index'
 
 type Type = 'checkbox' | 'search' | 'search-clear' | 'close'
 
@@ -18,15 +18,15 @@ const props = withDefaults(defineProps<IProps>(), {
   color: '#dbdddb',
 })
 
-const iconFontSize = getCssDefaultUint(props.size)
+const iconFontSize = getCSSDefaultUint(props.size)
 </script>
 
-<style lang="scss" scoped>
-@import url('../assets/icons/index.scss');
+<style scoped>
+@import url('../assets/icons/index.css');
 
 .icon {
-    display: inline-block;
-    font-size: v-bind(iconFontSize);
-    color: v-bind(color);
+  display: inline-block;
+  font-size: v-bind(iconFontSize);
+  color: v-bind(color);
 }
 </style>
